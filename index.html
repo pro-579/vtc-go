@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>VTC&Go — Chauffeur privé</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="CSS.css">
+</head>
+<body>
+
+<header class="topbar">
+	<div class="topbar__mark">VTC<span class="topbar__amp">&amp;</span>GO</div>
+	<a class="topbar__call" href="tel:0611401381">06 11 40 13 81</a>
+</header>
+
+<section class="hero">
+	<div class="hero__inner">
+		<p class="hero__kicker">Chauffeur privé</p>
+		<h1 class="hero__title">Un trajet<br>sans imprévu.</h1>
+		<p class="hero__lead">Berline Tesla, chauffeurs expérimentés, ponctuels et discrets. Disponibles à toute heure, pour vos déplacements professionnels comme personnels.</p>
+		<div class="hero__stats">
+			<div class="hero__stat">
+				<span class="hero__stat-num">24/7</span>
+				<span class="hero__stat-label">Sur réservation</span>
+			</div>
+			<div class="hero__stat">
+				<span class="hero__stat-num">2&nbsp;€/km</span>
+				<span class="hero__stat-label">Dès 25&nbsp;€ la course</span>
+			</div>
+		</div>
+	</div>
+</section>
+
+<main>
+
+	<section class="bloc" id="activite">
+		<div class="bloc__num">01</div>
+		<div class="bloc__content">
+			<h2>Activité</h2>
+			<p>VTC&amp;GO est une société de chauffeur privé. Nous proposons un service de transport haut de gamme, pensé pour les professionnels comme pour les particuliers. Nos chauffeurs sont expérimentés, ponctuels et discrets ; nos véhicules, confortables et parfaitement entretenus. L'objectif : un déplacement fluide, sûr et élégant, du premier au dernier kilomètre.</p>
+		</div>
+	</section>
+
+	<section class="bloc" id="horaires">
+		<div class="bloc__num">02</div>
+		<div class="bloc__content">
+			<h2>Horaires</h2>
+			<p>Nos chauffeurs sont disponibles 24h/24 et 7 jours sur 7. Réservez votre course à l'heure qui vous convient, la nôtre s'adapte.</p>
+		</div>
+	</section>
+
+	<section class="bloc" id="tarifs">
+		<div class="bloc__num">03</div>
+		<div class="bloc__content">
+			<h2>Tarifs</h2>
+			<p>Le véhicule utilisé est une berline Tesla. Un van peut être proposé sur devis selon le nombre de passagers ou la prestation souhaitée.</p>
+
+			<div class="calc">
+				<div class="calc__row">
+					<label class="calc__toggle">
+						<input type="radio" name="vehicule" value="berline" checked>
+						<span>Berline Tesla</span>
+					</label>
+					<label class="calc__toggle">
+						<input type="radio" name="vehicule" value="van">
+						<span>Van (sur devis)</span>
+					</label>
+				</div>
+
+				<div class="calc__row calc__row--input">
+					<label for="km">Distance estimée</label>
+					<div class="calc__input-wrap">
+						<input type="number" id="km" min="0" step="0.1" inputmode="decimal" placeholder="0">
+						<span>km</span>
+					</div>
+				</div>
+
+				<div class="calc__result" id="calc-result">
+					<span class="calc__result-label">Estimation</span>
+					<span class="calc__result-price" id="calc-price">—</span>
+				</div>
+				<p class="calc__note">2&nbsp;€ par kilomètre, 25&nbsp;€ minimum. Estimation indicative, hors majorations nuit/jours fériés.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="bloc" id="contact">
+		<div class="bloc__num">04</div>
+		<div class="bloc__content">
+			<h2>Nous contacter</h2>
+			<p>Par téléphone au <a class="inline-link" href="tel:0611401381">06 11 40 13 81</a>, ou via le formulaire ci-dessous : celui-ci ouvre votre messagerie avec un message déjà préparé, à destination de <a class="inline-link" href="mailto:vtc.and.go@gmail.com">vtc.and.go@gmail.com</a>.</p>
+
+			<form class="contact-form" id="contact-form">
+				<div class="contact-form__field">
+					<label for="nom">Nom</label>
+					<input type="text" id="nom" name="nom" required>
+				</div>
+				<div class="contact-form__field">
+					<label for="email">Votre adresse mail</label>
+					<input type="email" id="email" name="email" required>
+				</div>
+				<div class="contact-form__field">
+					<label for="telephone">Téléphone (facultatif)</label>
+					<input type="tel" id="telephone" name="telephone">
+				</div>
+				<div class="contact-form__field">
+					<label for="message">Votre demande</label>
+					<textarea id="message" name="message" rows="5" required placeholder="Date, heure, trajet, nombre de personnes…"></textarea>
+				</div>
+				<button type="submit" class="contact-form__submit">Ouvrir le mail</button>
+			</form>
+		</div>
+	</section>
+
+</main>
+
+<footer class="footer">
+	<span>VTC&amp;GO — Chauffeur privé</span>
+	<span>06 11 40 13 81 · vtc.and.go@gmail.com</span>
+</footer>
+
+<script>
+	// Calculateur de tarif
+	const kmInput = document.getElementById('km');
+	const priceOut = document.getElementById('calc-price');
+	const vehiculeRadios = document.querySelectorAll('input[name="vehicule"]');
+
+	function updatePrice() {
+		const vehicule = document.querySelector('input[name="vehicule"]:checked').value;
+		if (vehicule === 'van') {
+			priceOut.textContent = 'Sur devis';
+			return;
+		}
+		const km = parseFloat(kmInput.value);
+		if (isNaN(km) || km <= 0) {
+			priceOut.textContent = '—';
+			return;
+		}
+		const prix = Math.max(25, km * 2);
+		priceOut.textContent = prix.toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + ' €';
+	}
+
+	kmInput.addEventListener('input', updatePrice);
+	vehiculeRadios.forEach(r => r.addEventListener('change', updatePrice));
+
+	// Formulaire de contact -> mailto pré-rempli
+	const form = document.getElementById('contact-form');
+	form.addEventListener('submit', function (e) {
+		e.preventDefault();
+		const nom = document.getElementById('nom').value.trim();
+		const email = document.getElementById('email').value.trim();
+		const telephone = document.getElementById('telephone').value.trim();
+		const message = document.getElementById('message').value.trim();
+
+		const sujet = 'Demande de course — ' + nom;
+		const corps =
+			'Nom : ' + nom + '\n' +
+			'Adresse mail : ' + email + '\n' +
+			(telephone ? 'Téléphone : ' + telephone + '\n' : '') +
+			'\n' + message;
+
+		const lien = 'mailto:vtc.and.go@gmail.com'
+			+ '?subject=' + encodeURIComponent(sujet)
+			+ '&body=' + encodeURIComponent(corps);
+
+		window.location.href = lien;
+	});
+</script>
+
+</body>
+</html>
