@@ -1,0 +1,379 @@
+:root {
+	--noir: #0b0c0d;
+	--anthracite: #16181a;
+	--ligne: #2a2d30;
+	--clair: #ece8e1;
+	--attenue: #999c9e;
+	--bronze: #b3835a;
+	--bronze-clair: #d1a37a;
+
+	--police-titre: 'Big Shoulders Display', sans-serif;
+	--police-texte: 'Work Sans', sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	background: var(--noir);
+	color: var(--clair);
+	font-family: var(--police-texte);
+	font-size: 16px;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1, h2 {
+	font-family: var(--police-titre);
+	font-weight: 700;
+	margin: 0;
+	color: var(--clair);
+	letter-spacing: 0.01em;
+}
+
+a {
+	color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+	outline: 2px solid var(--bronze-clair);
+	outline-offset: 3px;
+}
+
+/* ---------- Barre supérieure ---------- */
+
+.topbar {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.1rem clamp(1.25rem, 5vw, 3.5rem);
+	background: rgba(11, 12, 13, 0.92);
+	backdrop-filter: blur(6px);
+	border-bottom: 1px solid var(--ligne);
+}
+
+.topbar__logo {
+	display: block;
+	height: 34px;
+	width: auto;
+	/* Le fichier source est un trait noir sur fond blanc plein :
+	   on inverse pour obtenir un fond quasi noir (proche de --noir)
+	   et un trait clair, qui se fond dans la barre sombre. */
+	filter: invert(1) brightness(0.92);
+}
+
+.topbar__call {
+	text-decoration: none;
+	font-size: 0.95rem;
+	color: var(--clair);
+	border: 1px solid var(--ligne);
+	padding: 0.5rem 1rem;
+	border-radius: 2px;
+	transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.topbar__call:hover {
+	border-color: var(--bronze);
+	color: var(--bronze-clair);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+	padding: clamp(3.5rem, 12vh, 7rem) clamp(1.25rem, 5vw, 3.5rem) clamp(2.5rem, 8vh, 4rem);
+	border-bottom: 1px solid var(--ligne);
+}
+
+.hero__inner {
+	max-width: 640px;
+}
+
+.hero__kicker {
+	margin: 0 0 0.75rem;
+	color: var(--bronze-clair);
+	font-size: 0.95rem;
+}
+
+.hero__title {
+	font-size: clamp(3rem, 9vw, 5.5rem);
+	line-height: 0.95;
+}
+
+.hero__lead {
+	max-width: 46ch;
+	margin: 1.5rem 0 0;
+	color: var(--attenue);
+	font-size: 1.05rem;
+}
+
+.hero__stats {
+	display: flex;
+	gap: clamp(1.5rem, 5vw, 3rem);
+	margin-top: 2.75rem;
+	padding-top: 1.75rem;
+	border-top: 1px solid var(--ligne);
+}
+
+.hero__stat {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}
+
+.hero__stat-num {
+	font-family: var(--police-titre);
+	font-size: 1.9rem;
+	font-weight: 600;
+	color: var(--bronze-clair);
+}
+
+.hero__stat-label {
+	font-size: 0.85rem;
+	color: var(--attenue);
+}
+
+/* ---------- Sections numérotées ---------- */
+
+.bloc {
+	display: grid;
+	grid-template-columns: 4.5rem 1fr;
+	gap: clamp(1rem, 4vw, 2.5rem);
+	padding: clamp(2.5rem, 7vh, 4rem) clamp(1.25rem, 5vw, 3.5rem);
+	border-bottom: 1px solid var(--ligne);
+}
+
+.bloc__num {
+	font-family: var(--police-titre);
+	font-size: 1.1rem;
+	color: var(--ligne);
+	padding-top: 0.3rem;
+}
+
+.bloc__content {
+	max-width: 640px;
+}
+
+.bloc__content h2 {
+	font-size: clamp(1.8rem, 4vw, 2.4rem);
+	margin-bottom: 1rem;
+}
+
+.bloc__content p {
+	color: var(--attenue);
+	margin: 0 0 0.5rem;
+}
+
+.inline-link {
+	color: var(--bronze-clair);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-color: var(--ligne);
+}
+
+.inline-link:hover {
+	text-decoration-color: var(--bronze-clair);
+}
+
+/* ---------- Calculateur ---------- */
+
+.calc {
+	margin-top: 1.75rem;
+	background: var(--anthracite);
+	border: 1px solid var(--ligne);
+	padding: clamp(1.25rem, 4vw, 2rem);
+}
+
+.calc__row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.25rem;
+	margin-bottom: 1.25rem;
+}
+
+.calc__toggle {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.95rem;
+	color: var(--clair);
+	cursor: pointer;
+}
+
+.calc__toggle input {
+	accent-color: var(--bronze);
+	width: 1rem;
+	height: 1rem;
+}
+
+.calc__row--input {
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.calc__row--input label {
+	font-size: 0.85rem;
+	color: var(--attenue);
+}
+
+.calc__input-wrap {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	border-bottom: 1px solid var(--ligne);
+	padding-bottom: 0.5rem;
+	max-width: 220px;
+}
+
+.calc__input-wrap input {
+	flex: 1;
+	background: transparent;
+	border: none;
+	color: var(--clair);
+	font-family: var(--police-titre);
+	font-size: 1.5rem;
+	padding: 0;
+	width: 100%;
+}
+
+.calc__input-wrap input:focus {
+	outline: none;
+}
+
+.calc__input-wrap span {
+	color: var(--attenue);
+	font-size: 0.9rem;
+}
+
+.calc__result {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	padding-top: 1.25rem;
+	border-top: 1px solid var(--ligne);
+}
+
+.calc__result-label {
+	font-size: 0.9rem;
+	color: var(--attenue);
+}
+
+.calc__result-price {
+	font-family: var(--police-titre);
+	font-size: 2.4rem;
+	font-weight: 600;
+	color: var(--bronze-clair);
+}
+
+.calc__note {
+	margin: 1.25rem 0 0;
+	font-size: 0.8rem;
+	color: var(--attenue);
+	opacity: 0.8;
+}
+
+/* ---------- Formulaire de contact ---------- */
+
+.contact-form {
+	margin-top: 1.75rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	max-width: 480px;
+}
+
+.contact-form__field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+
+.contact-form__field label {
+	font-size: 0.85rem;
+	color: var(--attenue);
+}
+
+.contact-form__field input,
+.contact-form__field textarea {
+	background: var(--anthracite);
+	border: 1px solid var(--ligne);
+	color: var(--clair);
+	font-family: var(--police-texte);
+	font-size: 0.95rem;
+	padding: 0.75rem 0.9rem;
+	resize: vertical;
+	transition: border-color 0.2s ease;
+}
+
+.contact-form__field input:focus,
+.contact-form__field textarea:focus {
+	border-color: var(--bronze);
+	outline: none;
+}
+
+.contact-form__submit {
+	align-self: flex-start;
+	background: var(--bronze);
+	color: var(--noir);
+	border: none;
+	font-family: var(--police-titre);
+	font-weight: 600;
+	font-size: 1.05rem;
+	letter-spacing: 0.01em;
+	padding: 0.85rem 2rem;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.contact-form__submit:hover {
+	background: var(--bronze-clair);
+}
+
+/* ---------- Pied de page ---------- */
+
+.footer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1.5rem;
+	justify-content: space-between;
+	padding: 2rem clamp(1.25rem, 5vw, 3.5rem) 2.5rem;
+	color: var(--attenue);
+	font-size: 0.85rem;
+}
+
+/* ---------- Réduction de mouvement ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	* {
+		transition: none !important;
+	}
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 640px) {
+	.bloc {
+		grid-template-columns: 1fr;
+	}
+	.bloc__num {
+		padding-top: 0;
+	}
+	.hero__stats {
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+}
