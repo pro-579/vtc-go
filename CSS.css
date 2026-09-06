@@ -108,6 +108,13 @@ textarea:focus-visible {
 	max-width: 640px;
 }
 
+.hero__logo {
+	height: 64px;
+	width: auto;
+	filter: invert(1) brightness(0.92);
+	margin-bottom: 2rem;
+}
+
 .hero__kicker {
 	margin: 0 0 0.75rem;
 	color: var(--bronze-clair);
@@ -199,7 +206,8 @@ textarea:focus-visible {
 .calc {
 	margin-top: 1.75rem;
 	background: var(--anthracite);
-	border: 1px solid var(--ligne);
+	border: 8px solid transparent;
+	border-image: repeating-linear-gradient(45deg, #caa14b 0 14px, #1c1d1f 14px 28px) 8;
 	padding: clamp(1.25rem, 4vw, 2rem);
 }
 
@@ -425,5 +433,9 @@ textarea:focus-visible {
 	}
 	.calc__result-price {
 		font-size: 1.9rem;
+	}
+	.calc {
+		border-width: 5px;
+		border-image: repeating-linear-gradient(45deg, #caa14b 0 9px, #1c1d1f 9px 18px) 5;
 	}
 }
