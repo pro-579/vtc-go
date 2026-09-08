@@ -104,13 +104,8 @@ textarea:focus-visible {
 	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
 	-webkit-mask-composite: xor;
 	mask-composite: exclude;
-	animation: rotation-argent 7s linear infinite;
 	z-index: -1;
 	pointer-events: none;
-}
-
-@keyframes rotation-argent {
-	to { transform: rotate(360deg); }
 }
 
 /* Taille et inversion fixées aussi en dur dans le HTML (attribut style) :
@@ -177,7 +172,6 @@ textarea:focus-visible {
 	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
 	-webkit-mask-composite: xor;
 	mask-composite: exclude;
-	animation: rotation-argent 9s linear infinite;
 	z-index: -1;
 	pointer-events: none;
 }
@@ -652,10 +646,6 @@ textarea:focus-visible {
 	.js .reveal h2::after,
 	.bloc__content h2::after {
 		width: 56px !important;
-	}
-	.topbar__brand::before,
-	.hero__visual-frame::before {
-		display: none;
 	}
 }
 
