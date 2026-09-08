@@ -159,11 +159,30 @@ textarea:focus-visible {
 	border-bottom: 1px solid var(--ligne);
 }
 
-.hero__visual {
+.hero__visual-frame {
 	display: block;
+	position: relative;
 	width: clamp(220px, 65vw, 420px);
-	height: auto;
 	margin: 2.5rem auto 0;
+	padding: 14px;
+	isolation: isolate;
+}
+
+.hero__visual-frame::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	padding: 1.5px;
+	background: conic-gradient(from 0deg, var(--argent-2), var(--argent-3), var(--argent-1), var(--argent-2));
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+	animation: rotation-argent 9s linear infinite;
+	z-index: -1;
+	pointer-events: none;
+}
+
+.hero__visual {
 	opacity: 0.9;
 }
 
@@ -175,7 +194,7 @@ textarea:focus-visible {
 		gap: clamp(2rem, 6vw, 5rem);
 	}
 
-	.hero__visual {
+	.hero__visual-frame {
 		flex: 0 1 auto;
 		width: clamp(260px, 34vw, 520px);
 		margin: 0;
@@ -252,7 +271,7 @@ textarea:focus-visible {
 .hero__title,
 .hero__lead,
 .hero__stats,
-.hero__visual {
+.hero__visual-frame {
 	animation: entree 0.8s ease both;
 }
 
@@ -260,7 +279,7 @@ textarea:focus-visible {
 .hero__title { animation-delay: 0.1s; }
 .hero__lead { animation-delay: 0.25s; }
 .hero__stats { animation-delay: 0.4s; }
-.hero__visual { animation-delay: 0.5s; }
+.hero__visual-frame { animation-delay: 0.5s; }
 
 /* ---------- Sections ---------- */
 
@@ -621,7 +640,7 @@ textarea:focus-visible {
 	.hero__title,
 	.hero__lead,
 	.hero__stats,
-	.hero__visual,
+	.hero__visual-frame,
 	.hero__stat-num,
 	.reveal,
 	.js .reveal {
@@ -634,7 +653,8 @@ textarea:focus-visible {
 	.bloc__content h2::after {
 		width: 56px !important;
 	}
-	.topbar__brand::before {
+	.topbar__brand::before,
+	.hero__visual-frame::before {
 		display: none;
 	}
 }
