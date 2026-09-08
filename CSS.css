@@ -9,6 +9,9 @@
 	--or-clair: #f0ddbb;
 	--acier: #7c93a8;
 	--acier-clair: #a9bccb;
+	--argent-1: #c9ced2;
+	--argent-2: #6f757a;
+	--argent-3: #f2f4f5;
 
 	--degrade-titre: linear-gradient(100deg, var(--bronze) 0%, var(--bronze-clair) 40%, var(--or-clair) 58%, var(--bronze-clair) 78%, var(--bronze) 100%);
 
@@ -82,10 +85,32 @@ textarea:focus-visible {
 	border-bottom: 1px solid var(--ligne);
 }
 
+/* Cadre argent animé autour du logo */
 .topbar__brand {
-	display: block;
+	display: inline-flex;
 	flex-shrink: 0;
 	line-height: 0;
+	position: relative;
+	padding: 7px 11px;
+	isolation: isolate;
+}
+
+.topbar__brand::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	padding: 1.5px;
+	background: conic-gradient(from 0deg, var(--argent-2), var(--argent-3), var(--argent-1), var(--argent-2));
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+	animation: rotation-argent 7s linear infinite;
+	z-index: -1;
+	pointer-events: none;
+}
+
+@keyframes rotation-argent {
+	to { transform: rotate(360deg); }
 }
 
 /* Taille et inversion fixées aussi en dur dans le HTML (attribut style) :
@@ -270,8 +295,31 @@ textarea:focus-visible {
 }
 
 .bloc__content h2 {
+	position: relative;
+	display: inline-block;
 	font-size: clamp(1.8rem, 4vw, 2.4rem);
+	padding-bottom: 0.6rem;
 	margin-bottom: 1rem;
+}
+
+.bloc__content h2::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 2px;
+	width: 56px;
+	background: var(--degrade-titre);
+	background-size: 180% auto;
+}
+
+.js .reveal h2::after {
+	width: 0;
+	transition: width 0.7s ease 0.15s;
+}
+
+.js .reveal.in-view h2::after {
+	width: 56px;
 }
 
 .bloc__content p {
@@ -315,6 +363,16 @@ textarea:focus-visible {
 .prestations__item {
 	border-left: 2px solid var(--bronze);
 	padding-left: 1rem;
+	transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.prestations__item:nth-child(even) {
+	border-left-color: var(--acier);
+}
+
+.prestations__item:hover {
+	border-left-color: var(--or-clair);
+	transform: translateX(4px);
 }
 
 .prestations__item h3 {
@@ -393,6 +451,30 @@ textarea:focus-visible {
 	outline: none;
 }
 
+.calc__submit,
+.contact-form__submit {
+	position: relative;
+	overflow: hidden;
+}
+
+.calc__submit::after,
+.contact-form__submit::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -60%;
+	width: 40%;
+	height: 100%;
+	background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+	transform: skewX(-20deg);
+	transition: left 0.6s ease;
+}
+
+.calc__submit:hover::after,
+.contact-form__submit:hover::after {
+	left: 130%;
+}
+
 .calc__submit {
 	background: transparent;
 	border: 1px solid var(--bronze);
@@ -440,6 +522,16 @@ textarea:focus-visible {
 	font-size: 2.4rem;
 	font-weight: 600;
 	color: var(--bronze-clair);
+	display: inline-block;
+}
+
+@keyframes apparition-prix {
+	from { opacity: 0.3; transform: scale(0.92); }
+	to { opacity: 1; transform: scale(1); }
+}
+
+.calc__result-price--pulse {
+	animation: apparition-prix 0.5s ease;
 }
 
 .calc__note {
@@ -537,6 +629,13 @@ textarea:focus-visible {
 		animation: none !important;
 		opacity: 1 !important;
 		transform: none !important;
+	}
+	.js .reveal h2::after,
+	.bloc__content h2::after {
+		width: 56px !important;
+	}
+	.topbar__brand::before {
+		display: none;
 	}
 }
 
